@@ -11,7 +11,7 @@ class CarSearch {
   constructor(carData) {
     //assigning new values --> properties
     this.carData = carData; // storing car data
-    console.log(`Inside of Constructo ${carData}`);
+    console.log(`Inside of Constructor ${carData}`);
     // YEAR | after mthod called => new value for this.year
     this.years = this.getCarYears(); // fetching years
     //MAKE MAP | links year to make types
@@ -23,25 +23,26 @@ class CarSearch {
 
   getCarYears() {
     // create a set --> based on year selected / exyracted fom e/a car
-    //[...] --> helsp conver SEt back to array| after Years fetched
-    return [...new Set(this.carData.map((car) => car.year))]; //fetching "year" property from e/a car
+    //[...] --> helps convert Set to array
+    return [...new Set(this.carData.map((car) => car.year))];
   }
+
   //----------- YEAR|MAKE MAP - link/values -----
 
   createYrsMakeMap() {
     const map = new Map();
     //help store years(k):Set(Manucafturers(Values)
-    this.carData.forEach(({ year, manufacturer }) => {
+    this.carData.forEach(({ year, Manufacturer }) => {
       // /loops through e/a object-->destructuring properties year/model --> update Maps
 
       if (!map.has(year)) map.set(year, new Set());
       // logic | cheking if 'year' found | adds new Make vlaue to the Set
-      map.get(year).add(manufacturer); //add Manfct. to corrs. Year
+      map.get(year).add(Manufacturer); //add Manfct. to corrs. Year
     });
-    console.log(`YearMakeMap:${map}`); //chek
+    console.log(`YearMakeMap:`, map); // big diffence in output. multi argument Log (labe, variable)--> displays full object values
     return map; //return Map data
   }
-  //---------** NESTED MAP - link/values:year | manufacturer | models-----
+  //---------** NESTED MAP - link/values:year | Manufacturer | models-----
 
   createModelMap() {
     const map = new Map(); // start Maps
@@ -51,7 +52,7 @@ class CarSearch {
      * Map3-> Set(modesl data)
      */
 
-    this.carData.forEach(({ year, manufacturer, model }) => {
+    this.carData.forEach(({ year, Manufacturer, model }) => {
       //destructuting properties**
       //loopthrough
       if (!map.has(year)) {
@@ -61,14 +62,15 @@ class CarSearch {
       // New Map: store the Manufacturers and retrieves "YEAR" MAP| selected Year
       const manufacturerMap = map.get(year); //Mapss| MAnufture(keys) : Set(Models) = "values"
 
-      // cheks if manufacturer in the Map| If NOt -> initialize new Set wiht it
-      if (!manufacturerMap.has(manufacturer)) {
-        manufacturerMap.set(manufacturer, new Set());
+      // cheks if Manufacturer in the Map| If NOt -> initialize new Set wiht it
+      if (!manufacturerMap.has(Manufacturer)) {
+        manufacturerMap.set(Manufacturer, new Set());
         //If not--> will add new Model to Set
       }
       // adds Model tot Manufatire Set
-      manufacturerMap.get(manufacturer).add(model); //adds model to set| model->Make->Year [Relationship**] took a while to wrap my mind aroudnthis one, but i think i got it now..
+      manufacturerMap.get(Manufacturer).add(model); //adds model to set| model->Make->Year [Relationship**] took a while to wrap my mind aroudnthis one, but i think i got it now..
     });
+    console.log(`ModelMap`, map);
     return map; // Return the completed Map
   }
 
@@ -91,8 +93,8 @@ class CarSearch {
       [...manufacturers]
         //coverting Set to array -> Map through
         .map(
-          (manufacturer) =>
-            `<option value="${manufacturer}">${manufacturer}</option>`
+          (Manufacturer) =>
+            `<option value="${Manufacturer}">${Manufacturer}</option>`
         )
         .join("")
     );
@@ -105,11 +107,12 @@ class CarSearch {
     1. checks if yearData exists| 2. chskc for slectedMAke data|3. if they exist --> push them to models [] array 
     */
     if (makeMap && makeMap.has(selectedMake)) {
-      //Conditonal=> Map has selectd make/manufacturer
+      //Conditonal=> Map has selectd make/Manufacturer
       models = [...makeMap.get(selectedMake)];
       //fetches data of models for selected make
       //conversts Set to array ->to loop through
     }
+
     return models
       .map((model) => `<option value="${model}">${model}</option>`)
       .join("");
@@ -119,7 +122,7 @@ class CarSearch {
     return this.carData.find(
       (car) =>
         car.year === parseInt(selectedYear) &&
-        car.manufacturer === selectedMake &&
+        car.Manufacturer === selectedMake &&
         car.model === selectedModel
     );
   }
@@ -146,7 +149,7 @@ function startCarSearch(carData) {
     const selectedYear = yearOptions.value;
     //logic for Options
     if (selectedYear) {
-      // fectching | Makes(manufacturer) w/ Year param
+      // fectching | Makes(Manufacturer) w/ Year param
       const makes = carSearch.makeDropdown(selectedYear);
       //passing data to "makeOptins"dprDwn*
       makeOptions.innerHTML = `<option value="">Select Make</option>` + makes;
@@ -162,6 +165,7 @@ function startCarSearch(carData) {
       modelOptions.innerHTML = `<option value="">Select Model</option>`;
       modelOptions.disabled = true; // ensures NO dropdown
     }
+    console.log(`SelectedYear ${selectedYear}`);
   });
   //  --- MAKE (Manufacturer) Option | EVENT LSITENER ---------
   makeOptions.addEventListener("change", () => {
@@ -179,6 +183,26 @@ function startCarSearch(carData) {
       modelOptions.innerHTML = `<option value="">Select Model</option>`;
       modelOptions.disabled = true;
     }
+    console.log(`Selected Make:${selectedMake}`);
+  });
+  //  --- MODEL Option | EVENT LSITENER ---------
+  modelOptions.addEventListener("change", () => {
+    const selectedYear = yearOptions.value; //fetch selected "Year" drpdwn
+    const selectedMake = makeOptions.value; // fetch "MAKE" selectx
+    const selectedModel = modelOptions.value; //fetch modelc selected
+    //logic for MakeOptions | Needed params
+
+    if (selectedModel) {
+      // fectching | Models based on Make and w/ Year param
+      const carData = carSearch.getCarParams(
+        selectedYear,
+        selectedMake,
+        selectedModel
+      );
+      console.log(`Selected Model: ${selectedModel}`);
+      console.log(`Car Details: `, carData);
+    }
+    console.log(`Selected Make:${selectedModel}`);
   });
 }
 
