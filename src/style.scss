@@ -1,0 +1,56 @@
+* {
+  background-color: #f2f2f2;
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+#heading {
+  // Heading / main color
+  padding-top: 50%;
+  text-align: center;
+  margin: 20px 0;
+  h1 {
+    font-size: 23px;
+    color: #ffffff;
+  }
+  // Subheading -- Color and Size!!
+  h4 {
+    font-size: 16px;
+    color: #d3d3d3;
+  }
+}
+
+body {
+  //whats wronf wiht the img!
+  background-image: url("./assets/bg.jpg"); // check!
+  background-size: cover;
+  background-position: center;
+  // align-items: center;
+  justify-content: center;
+  height: 100vh; //full windon height
+}
+// FORM --------------
+#form {
+  max-width: 60%;
+  margin: 0 auto;
+  background-color: #f2f2f2;
+  padding: 2rem;
+  border-radius: 6px;
+  // border-color: "red";
+
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  //Labels ----- color/Display!
+  label {
+    color: #909090;
+    display: flexbox;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  //Form--> select
+  select {
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Car Finder | PWA Module 1</title>
+  </head>
+  <body >
+    <!-- HEADING ----- -->
+    <div id="heading">
+      <h1>Find Your Dream Vehicle</h1>
+        <p>
+          <h4>Have you been dreaming about a new vehicle?</h4>
+        </p>
+        <p>
+          <h4>Well, you're in luck.</h4>
+        </p>
+      
+    </div>
+    <!-- Form: <select> element b/c it defines a dropdown list-->
+    <div id="form">
+      <!-- FORM | YEAR Dropdown -->
+      <label for="formYear"><b>YEAR</b></label>
+      <select id="year" name="year">
+        <option value="">Vehicle Year</option>
+      </select>
+      <!-- FORM | MAKE | Dropdown -->
+      <label for="formMake"><b>MAKE</b></label>
+      <select id="make" name="make" disabled>
+        <option value="">Vehicle Make</option>
+      </select>
+      <!-- MODEL | Dropdown -->
+      <label for="formModel"><b>MODEL</b></label>
+      <select id="model" name="model" disabled>
+        <option value="">Vehicle Model</option>
+      </select>
+    </div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
