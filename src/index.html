@@ -5,36 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Car Finder | PWA Module 1</title>
   </head>
-  <body >
+  <body id="content">
     <!-- HEADING ----- -->
-    <div id="heading">
-      <h1>Find Your Dream Vehicle</h1>
-        <p>
-          <h4>Have you been dreaming about a new vehicle?</h4>
-        </p>
-        <p>
-          <h4>Well, you're in luck.</h4>
-        </p>
-      
-    </div>
+    <!--I +ed <headear> tag for semantics -->
+    <header>
+      <div id="heading">
+        <h1>Find Your Dream Vehicle</h1>
+        <p>Have you been dreaming about a new vehicle? Well, you're in luck.</p>
+      </div>
+    </header>
     <!-- Form: <select> element b/c it defines a dropdown list-->
-    <div id="form">
-      <!-- FORM | YEAR Dropdown -->
-      <label for="formYear"><b>YEAR</b></label>
-      <select id="year" name="year">
-        <option value="">Vehicle Year</option>
-      </select>
-      <!-- FORM | MAKE | Dropdown -->
-      <label for="formMake"><b>MAKE</b></label>
-      <select id="make" name="make" disabled>
-        <option value="">Vehicle Make</option>
-      </select>
-      <!-- MODEL | Dropdown -->
-      <label for="formModel"><b>MODEL</b></label>
-      <select id="model" name="model" disabled>
-        <option value="">Vehicle Model</option>
-      </select>
-    </div>
+    <main>
+      <!--I +ed <main> tag | semantics -->
+      <form class="carSerch-form">
+        <!-- decided to name id=same>easier to styling -->
+        <!-- FORM | YEAR Dropdown -->
+        <div id="form-content">
+          <label for="year"><b>Year</b></label>
+          <select id="year" name="year">
+            <option value="">Vehicle Year</option>
+          </select>
+        </div>
+
+        <!-- FORM | MAKE | Dropdown -->
+        <div id="form-content">
+          <label for="make"><b>Make</b></label>
+          <select id="make" name="make" disabled>
+            <option value="">Vehicle Make</option>
+          </select>
+        </div>
+
+        <!-- MODEL | Dropdown -->
+        <div id="form-content">
+          <label for="formModel"><b>Model</b></label>
+          <select id="model" name="model" disabled>
+            <option value="">Vehicle Model</option>
+          </select>
+        </div>
+      </form>
+    </main>
+
     <script src="bundle.js"></script>
   </body>
 </html>

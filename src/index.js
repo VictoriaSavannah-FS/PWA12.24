@@ -2,10 +2,11 @@
 import "./style.scss";
 
 import carData from "./data.json";
+import { Generator } from "webpack";
 
 console.log(carData);
 
-class carSearch {
+class CarSearch {
   constructor(carData) {
     //assigning new values --> properties
     this.carData = carData; // storing car data
@@ -127,13 +128,62 @@ class carSearch {
 }
 //----- HTML --> Dynaics | Event Lsitenrs
 
-function create(carData) {
-  //"instantiate" CarSearch call w/ the car date
-  const carSearch = new carSearch(carData);
+function startCarSearch(carData) {
+  //"instantiate" CarSearch class| passes carData
+  const carSearch = new CarSearch(carData);
 
-  //----- PAss data to Dropdowns ----
-  const yearOptions = carSearch.yearDropdown();
-  const makeOptions = carSearch.makeDropdown();
-  const modelOptions = carSearch.modelDropdown();
-  console.log(carData);
+  //----- PAss data to Dropdowns ---- target by id's
+  const yearOptions = document.getElementById("year");
+  const makeOptions = document.getElementById("make");
+  const modelOptions = document.getElementById("model");
+
+  // pass data --> "Year" options drowpdown | creates new array w/ "yearXX"
+  yearOptions.innerHTML = carSearch.yearDropdown();
+
+  //Event Listeners!!
+  //  --- Year Option | EVENT LSITENER ---------
+  yearOptions.addEventListener("change", () => {
+    //assigns value from selected "Year" drpdwn
+    const selectedYear = yearOptions.value;
+    //logic for Options
+    if (selectedYear) {
+      // fectching | Makes(manufacturer) w/ Year param
+      const makes = carSearch.makeDropdown(selectedYear);
+      //passing data to "makeOptins"dprDwn*
+      makeOptions.innerHTML = `<option value="">Select Make</option>` + makes;
+      makeOptions.disabled = false; //Enables--> Dropdwn
+
+      //modelOptions|CLEARED --> CLEAR/Disables
+      modelOptions.innerHTML = `<option value="">Select Model</option>`; //empty- no prev. data selected yet
+      modelOptions.disabled = true; // ensures NO dropdown
+    } else {
+      // ensures "YEAR" option is selected | IF NOT! CLEARS and disables all other options
+      makeOptions.innerHTML = `<option value="">Select Make</option>`;
+      makeOptions.disabled = true; // ensures NO dropdown
+      modelOptions.innerHTML = `<option value="">Select Model</option>`;
+      modelOptions.disabled = true; // ensures NO dropdown
+    }
+  });
+  //  --- MAKE (Manufacturer) Option | EVENT LSITENER ---------
+  makeOptions.addEventListener("change", () => {
+    const selectedYear = yearOptions.value; //fetch selected "Year" drpdwn
+    const selectedMake = makeOptions.value; // fetch "MAKE" selectx
+    //logic for MakeOptions | NEeded params
+    // ensures "YEAR"|"MAKE" optxs selected | IF NOT! CLEARS and disables  MODEL options
+    if (selectedMake) {
+      // fectching | Models based on Make and w/ Year param
+      const models = carSearch.modelDropdown(selectedYear, selectedMake);
+      //passing data to "modelOptins" dprDwn*
+      modelOptions.innerHTML = `<option>Select Model</option>` + models;
+      modelOptions.disabled = false; //Enables--> Dropdwn
+    } else {
+      modelOptions.innerHTML = `<option value="">Select Model</option>`;
+      modelOptions.disabled = true; // ensures NO dropdown
+    }
+  });
 }
+
+//wait for page to load | Start App
+window.onload = function () {
+  startCarSearch(carData);
+};

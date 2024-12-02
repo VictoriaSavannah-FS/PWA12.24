@@ -1,56 +1,98 @@
-* {
-  background-color: #f2f2f2;
-  padding: 0;
-  margin: 0;
-  font-family: "Open Sans", sans-serif;
-}
-#heading {
-  // Heading / main color
-  padding-top: 50%;
-  text-align: center;
-  margin: 20px 0;
-  h1 {
-    font-size: 23px;
-    color: #ffffff;
-  }
-  // Subheading -- Color and Size!!
-  h4 {
-    font-size: 16px;
-    color: #d3d3d3;
-  }
-}
+//$Variable:global value;
+$margin: 0 auto;
+$padding: 2rem;
+
+$border-radius: 6px;
+$gap: 3rem;
+$background-color: #212121;
+
+//colors----Style Guide
+$font-family: "Open Sans", sans-serif;
+
+$pri-text-color: #ffffff;
+$sub-text-color: #d3d3d3;
+$form-disabled-color: #909090;
+$form-text-color: #348fbc;
 
 body {
-  //whats wronf wiht the img!
-  background-image: url("./assets/bg.jpg"); // check!
+  margin: 0 auto;
+  padding: 0 auto;
+  font-family: $font-family;
+
+  //Set background img
+  background-image: url("./assets/bg.jpg");
   background-size: cover;
   background-position: center;
-  // align-items: center;
-  justify-content: center;
-  height: 100vh; //full windon height
+  background-color: $background-color; //falback - color|No img loads
+  // layout
+  height: 100vh; //full window height
+  // layout|content
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; //actual content items
 }
+
+// Heading Section
+
+#heading {
+  // LAYOUT-txt
+  text-align: start;
+  padding: $padding;
+  h1 {
+    color: $pri-text-color;
+  }
+   {
+    color: $sub-text-color;
+  }
+}
+
 // FORM --------------
 #form {
-  max-width: 60%;
-  margin: 0 auto;
-  background-color: #f2f2f2;
+  //font
+  font-family: $font-family;
+  font-size: 2rem;
+  //boxModel
+  margin: $margin;
+  border-radius: $border-radius;
   padding: 2rem;
-  border-radius: 6px;
-  // border-color: "red";
-
+  max-width: 80%;
+  // layout
+  background-color: #f2f2f2;
   display: flex;
   flex-direction: row;
-  gap: 1rem;
-  //Labels ----- color/Display!
-  label {
+  gap: $gap;
+
+  // Labels ----- color/Display!
+
+  #formYear {
     color: #909090;
-    display: flexbox;
+    display: flex;
     flex-direction: column;
-    gap: 0.45rem;
+    gap: $gap;
+
+    // padding: 10%;
   }
-  //Form--> select
-  select {
-    padding: 0.5rem;
-    border-radius: 4px;
+  #formMake {
+    //
+    color: #909090;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    // padding: 10%;
   }
+  #formModel {
+    color: #909090;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    // padding: 10%;
+  }
+  // // //Form--> select
+  // select {
+  //   padding: 0.5rem;
+  //   border-radius: 4px;
+  //   display: flex;
+  //   flex-direction: column;
+  // }
 }
