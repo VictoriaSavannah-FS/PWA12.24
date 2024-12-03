@@ -1,4 +1,5 @@
 //$Variable:global value;
+@use "sass:math"; // needed to impor SCSS math.div()
 $margin: 0 auto;
 $padding: 2rem;
 
@@ -37,8 +38,12 @@ body {
 
 #heading {
   // LAYOUT-txt
-  text-align: start;
+  text-align: center;
   padding: $padding;
+  margin: $margin;
+  //giving it a soft background for easier intelligibility of text in foregrond
+  background-color: color-mix(in hsl shorter hue, grey 7%, #89644a 5%);
+  border-radius: 10%;
   h1 {
     color: $pri-text-color;
   }
@@ -48,7 +53,7 @@ body {
 }
 
 // FORM --------------
-#carSearch-form {
+#form {
   //font
   font-family: $font-family;
   font-size: 2rem;
@@ -56,29 +61,54 @@ body {
   margin: $margin;
   border-radius: $border-radius;
   padding: 2rem;
-  max-width: 80%;
+  width: 90%;
   // layout
   background-color: #f2f2f2;
   display: flex;
   flex-direction: row;
   gap: $gap;
 
-  // Labels ----- color/Display!
+  //form content ---
+
+  //black lines for separation
+
+  > div:not(:last-child) {
+    //div children of form except 3rd one/lastone
+    position: relative;
+
+    &:after {
+      //creates the black line after
+      content: "";
+      position: absolute;
+
+      // streches blackline| top to bttm of containet
+      top: 0;
+      bottom: 0;
+      //using SCSS compiler -> @use directive for math.div()
+      right: math.div(-$gap, 3); //math.div for division***
+      width: 2px; // Thickness of the line
+      background-color: #d3d3d3;
+    }
+  }
 
   #form-group {
-    color: #909090;
+    text-align: center;
     display: flex;
     flex-direction: column;
     gap: $gap;
-
-    // padding: 10%;
+    padding: 100px;
+    > label {
+      text-align: center;
+      width: 90%;
+    }
   }
-
-  // // //Form--> select
-  // select {
-  //   padding: 0.5rem;
-  //   border-radius: 4px;
-  //   display: flex;
-  //   flex-direction: column;
-  // }
+  #form-content {
+    display: flex;
+    flex-direction: column;
+    color: $form-text-color;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1rem;
+    padding-right: 1rem;
+  }
 }
