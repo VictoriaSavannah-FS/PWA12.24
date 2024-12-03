@@ -3,8 +3,6 @@ import "./style.scss";
 
 import carData from "./data.json";
 
-// import { Generator } from "webpack"; --> I figured it out! I can't spell properly so when i mistyped-generateX and typed "generator" -> it automatically imported
-
 console.log(carData);
 
 class CarSearch {
@@ -142,7 +140,34 @@ function startCarSearch(carData) {
   // pass data --> "Year" options drowpdown | creates new array w/ "yearXX"
   yearOptions.innerHTML = carSearch.yearDropdown();
 
+  //  --- MAKE (Manufacturer) Option | UPDATED EVENT LSITENER ---------
+  // will autopopualet the drowpdown
+  function passModels() {
+    const selectedYear = yearOptions.value; //fetch selected "Year" drpdwn
+    const selectedMake = makeOptions.value; // fetch "MAKE" selectx
+
+    //logic for MakeOptions | NEeded params
+
+    if (selectedMake) {
+      // fectching | Models based on Make and w/ Year param
+      const models = carSearch.modelDropdown(selectedYear, selectedMake);
+      //passing data to "modelOptins" dprDwn*
+      modelOptions.innerHTML = `<option>Select Model</option>` + models;
+      modelOptions.disabled = false;
+
+      // Autopopualte / pass data for first Model!
+      if (modelOptions.options[1]) {
+        modelOptions.value = modelOptions.options[1].value;
+      }
+    } else {
+      modelOptions.innerHTML = `<option value="">Select Model</option>`;
+      modelOptions.disabled = true;
+    }
+    console.log(`Selected Make:${selectedMake}`);
+  }
+
   //Event Listeners!!
+
   //  --- Year Option | EVENT LSITENER ---------
   yearOptions.addEventListener("change", () => {
     //assigns value from selected "Year" drpdwn
@@ -153,11 +178,17 @@ function startCarSearch(carData) {
       const makes = carSearch.makeDropdown(selectedYear);
       //passing data to "makeOptins"dprDwn*
       makeOptions.innerHTML = `<option value="">Select Make</option>` + makes;
-      makeOptions.disabled = false; //Enables--> Dropdwn
+      makeOptions.disabled = false; //Enables--> Make Dropdwn
 
-      //modelOptions|CLEARED --> CLEAR/Disables
-      modelOptions.innerHTML = `<option value="">Select Model</option>`; //empty- no prev. data selected yet
-      modelOptions.disabled = true; // ensures NO dropdown
+      // upadate "Make"options to autopopulate with make[1]--> follow logic
+      if (makeOptions.options[1]) {
+        makeOptions.value = makeOptions.options[1].value; //first "Make"
+        passModels(); //call function to pass "Model" to dropdown
+
+        // //modelOptions|CLEARED --> CLEAR/Disables
+        // modelOptions.innerHTML = `<option value="">Select Model</option>`; //empty- no prev. data selected yet
+        // modelOptions.disabled = true; // ensures NO dropdown
+      }
     } else {
       // ensures "YEAR" option is selected | IF NOT! CLEARS and disables all other options
       makeOptions.innerHTML = `<option value="">Select Make</option>`;
@@ -167,24 +198,9 @@ function startCarSearch(carData) {
     }
     console.log(`SelectedYear ${selectedYear}`);
   });
-  //  --- MAKE (Manufacturer) Option | EVENT LSITENER ---------
-  makeOptions.addEventListener("change", () => {
-    const selectedYear = yearOptions.value; //fetch selected "Year" drpdwn
-    const selectedMake = makeOptions.value; // fetch "MAKE" selectx
-    //logic for MakeOptions | NEeded params
+  //invoke passModels after Make changes
+  makeOptions.addEventListener("change", passModels);
 
-    if (selectedMake) {
-      // fectching | Models based on Make and w/ Year param
-      const models = carSearch.modelDropdown(selectedYear, selectedMake);
-      //passing data to "modelOptins" dprDwn*
-      modelOptions.innerHTML = `<option>Select Model</option>` + models;
-      modelOptions.disabled = false;
-    } else {
-      modelOptions.innerHTML = `<option value="">Select Model</option>`;
-      modelOptions.disabled = true;
-    }
-    console.log(`Selected Make:${selectedMake}`);
-  });
   //  --- MODEL Option | EVENT LSITENER ---------
   modelOptions.addEventListener("change", () => {
     const selectedYear = yearOptions.value; //fetch selected "Year" drpdwn
