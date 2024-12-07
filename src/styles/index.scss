@@ -1,5 +1,32 @@
-html {
-  background: #1c531d;
+// importing the google font
+// <style>
+// @import url("https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+// </style>
+$background-color: #1c531d;
+$color: #e2e2e2;
+$font-family: Open Sans;
+
+$button-cololr: #238ab4;
+
+body {
+  background: $background-color;
   color: #e2e2e2;
+  border: 2rem;
+  padding: 4rem;
+  margin: 2rem;
+  // text-align: center;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+}
+
+body > main {
   text-align: center;
+}
+
+#button {
+  background-color: $button-cololr;
+  color: red;
 }

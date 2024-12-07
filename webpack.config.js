@@ -24,6 +24,10 @@ module.exports = {
         test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/i, // Add the rule for handling images
+        type: "asset/resource", // This emits image files to the output directory
+      },
     ],
   },
   plugins: [
