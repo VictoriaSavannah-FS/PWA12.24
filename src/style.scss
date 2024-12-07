@@ -1,0 +1,114 @@
+//$Variable:global value;
+@use "sass:math"; // needed to impor SCSS math.div()
+$margin: 0 auto;
+$padding: 2rem;
+
+$border-radius: 6px;
+$gap: 3rem;
+$background-color: #212121;
+
+//colors----Style Guide
+$font-family: "Open Sans", sans-serif;
+
+$pri-text-color: #ffffff;
+$sub-text-color: #d3d3d3;
+$form-disabled-color: #909090;
+$form-text-color: #348fbc;
+
+body {
+  margin: 0 auto;
+  padding: 0 auto;
+  font-family: $font-family;
+
+  //Set background img
+  background-image: url("./assets/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-color: $background-color; //falback - color|No img loads
+  // layout
+  height: 100vh; //full window height
+  // layout|content
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; //actual content items
+}
+
+// Heading Section
+
+#heading {
+  // LAYOUT-txt
+  text-align: center;
+  padding: $padding;
+  margin: $margin;
+  //giving it a soft background for easier intelligibility of text in foregrond
+  background-color: color-mix(in hsl shorter hue, grey 7%, #89644a 5%);
+  border-radius: 10%;
+  h1 {
+    color: $pri-text-color;
+  }
+  p {
+    color: $sub-text-color;
+  }
+}
+
+// FORM --------------
+#form {
+  //font
+  font-family: $font-family;
+  font-size: 2rem;
+  //boxModel
+  margin: $margin;
+  border-radius: $border-radius;
+  padding: 2rem;
+  width: 90%;
+  // layout
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: row;
+  gap: $gap;
+
+  //form content ---
+
+  //black lines for separation
+
+  > div:not(:last-child) {
+    //div children of form except 3rd one/lastone
+    position: relative;
+
+    &:after {
+      //creates the black line after
+      content: "";
+      position: absolute;
+
+      // streches blackline| top to bttm of containet
+      top: 0;
+      bottom: 0;
+      //using SCSS compiler -> @use directive for math.div()
+      right: math.div(-$gap, 3); //math.div for division***
+      width: 2px; // Thickness of the line
+      background-color: #d3d3d3;
+    }
+  }
+
+  #form-group {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    padding: 100px;
+    > label {
+      text-align: center;
+      width: 90%;
+    }
+  }
+  #form-content {
+    display: flex;
+    flex-direction: column;
+    color: $form-text-color;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1rem;
+    padding-right: 1rem;
+  }
+}
