@@ -4,29 +4,69 @@
 // </style>
 $background-color: #1c531d;
 $color: #e2e2e2;
-$font-family: Open Sans;
+$font-family: "Open Sans", sans-serif;
 
-$button-cololr: #238ab4;
-
+$button-color: #238ab4;
+// body styling
 body {
   background: $background-color;
   color: #e2e2e2;
   border: 2rem;
   padding: 4rem;
   margin: 2rem;
+  font-family: $font-family;
   // text-align: center;
 }
-
-header {
-  display: flex;
-  flex-direction: column;
-}
+// section styling
+// header {
+//   display: flex;
+//   flex-direction: column;
+// }
 
 body > main {
   text-align: center;
+  margin: 1rem;
+  border: 6px;
+  padding: 10px;
+}
+//  ----------  card container styling
+
+#card-container {
+  display: grid;
+  grid-area: 3/2;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.709);
 }
 
+.card-container img:hover {
+  transform: scale(1.05); //grows on hover! so cool!
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); //shadow on hover
+  border-radius: 14px;
+}
+
+// -----------  button styling
 #button {
-  background-color: $button-cololr;
-  color: red;
+  button {
+    background-color: $button-color;
+    color: whitesmoke;
+    font-size: medium;
+    font-family: $font-family;
+    // box moodel
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    margin: 3rem;
+    // cursor -soo many opitons!
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.709);
+    width: 25%;
+  }
+
+  button:hover {
+    background-color: #fa9937;
+    color: rgb(31, 31, 31);
+    transform: scale(1.2); //grows on hover! so cool!
+  }
 }

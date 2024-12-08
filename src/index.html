@@ -3,37 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
     <title>Card Match | Module 2</title>
   </head>
   <header>
     <div>
       <h1>Card Match Madness</h1>
       <p>
-        <h4>Use the two attempts you have to try to findthe matching pairs of cards.</h4>
+        Use the three attempts you have to try to find the matching pairs of
+        cards.
       </p>
     </div>
   </header>
   <body>
     <main>
       <div id="attempts">
-        <h2>Attempts Left:</h2>
+        <h2>Attempts Left: <span id="attempts-counter">3</span></h2>
       </div>
-      <img id="card1" src="./assets/card-flip-card-image.png"/>
-      <img id="card2" src="./assets/card-flip-card-image.png"/>
-      <img id="card3" src="./assets/card-flip-card-image.png"/>
-      <img id="card4" src="./assets/card-flip-card-image.png"/>
-      <div id="game-text-lost"><h3>Try Again!</h3>
-       </div>
-       <div id="game-text-won"><h3>You Won!</h3>
-       </div>
-       <div id="button">
-        <button type="reset" >Start Over!</button>
-       </div>
-
-
+      <div class="card-container">
+        <!-- dynaimcally change ther name of card? or name it now and show as hidden? -->
+        <img
+          id="card1"
+          src="./assets/card-flip-card-image.png"
+          alt="face-down Card 1"
+        />
+        <img
+          id="card2"
+          src="./assets/card-flip-card-image.png"
+          alt="face-down Card 2"
+        />
+        <img
+          id="card3"
+          src="./assets/card-flip-card-image.png"
+          alt="face-down Card 3"
+        />
+        <img
+          id="card4"
+          src="./assets/card-flip-card-image.png"
+          alt="face-down Card 4"
+        />
+        <img
+          id="card5"
+          src="./assets/card-flip-card-image.png"
+          alt="face-down Card 5"
+        />
+        <img
+          id="card6"
+          src="./assets/card-flip-card-image.png"
+          alt="face-down Card 6"
+        />
+      </div>
+      <!-- game outcome texts -->
+      <div id="game-text-lost" style="display: none"><h3>Try Again!</h3></div>
+      <div id="game-text-won" style="display: none"><h3>You Won!</h3></div>
+      <div id="button">
+        <button type="reset">Start Over!</button>
+      </div>
     </main>
     <script src="bundle.js"></script>
   </body>
