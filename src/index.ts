@@ -31,12 +31,17 @@ console.log("Hello World! This is just a TEST--- Remain calm. ");
 
 */
 
+// BUTTON GAME START -----> changinmg the text in [prep to researt game]
+// tagetr html
+document.querySelector("button")!.addEventListener("click", () => {
+  const buttonStart = document.querySelector("button");
+  if (buttonStart) {
+    buttonStart.textContent = "Play Again!";
+  }
+});
 /*
- <<<<<< --------- Setting Card type ---------- >>>>>>>>>>
- -
- -
+ <<<<<< --- Setting Card type 
  */
-
 type Card = {
   id: number; // keep track of card # - out 0f 12 [index in array]
   name: string; // "A", "B", "C", "D", "E", "F",
@@ -159,7 +164,7 @@ function updateCounter() {
  *  track id - index of cads
  * logic for mathchin or not
  * upadte counter
- * show on UI?
+ * show on UI
  */
 // type
 function showCards() {
@@ -178,7 +183,7 @@ function showCards() {
     cardElement.classList.add("card");
 
     // ++ event listener for card clicks"
-    cardElement.addEventListener("click", () => handleMatches(card.id));
+    cardElement.addEventListener("click", () => handleMatches());
     // creates elmntto previus li el
     container?.appendChild(cardElement);
   });
@@ -216,18 +221,19 @@ function handleMatches() {
     if (allPaired) {
       // update text
       const wonText = document.getElementById("game-text-won");
-      if(wonText){
+      if (wonText) {
         wonText.style.display = "block";
-    } else {
-      // create a fucntion to flip cards back ove??
-      firstCard.flipped = false;
-      secondCard.flipped = false;
-      attempts--; //update counter
-      updateCounter();
+      } else {
+        // create a fucntion to flip cards back ove??
+        firstCard.flipped = false;
+        secondCard.flipped = false;
+        attempts--; //update counter
+        updateCounter();
+      }
     }
+    // reset the flippedCards [] to emptyu to hold new sest of pairs
+    flippedCards = [];
   }
-  // reset the flippedCards [] to emptyu to hold new sest of pairs
-  flippedCards = [];
 }
 
 /**
