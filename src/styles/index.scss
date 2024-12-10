@@ -8,14 +8,18 @@ $font-family: "Open Sans", sans-serif;
 
 $button-color: #238ab4;
 // body styling
+html {
+  height: 100vh;
+}
+
 body {
   background: $background-color;
-  color: #e2e2e2;
-  border: 2rem;
-  padding: 4rem;
-  margin: 2rem;
+  color: hsl(0, 0%, 89%);
+  border: rem;
+  padding: 1rem;
+  margin: 0.5rem;
   font-family: $font-family;
-  // text-align: center;
+  box-sizing: border-box;
 }
 // section styling
 // header {
@@ -33,8 +37,9 @@ body > main {
 
 #card-container {
   display: grid;
-  grid-area: 3/2;
-  gap: 1rem;
+  grid-template-columns: repeat(3, auto);
+  // grid-area: 3/2;
+  grid-gap: 1rem;
   justify-content: center;
   margin: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.709);
