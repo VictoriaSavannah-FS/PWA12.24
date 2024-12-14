@@ -1,0 +1,16 @@
+body {
+  /* bx modl */
+  margin: 1rem;
+  padding: 2rem;
+  border: 1rem;
+
+  color: whitesmoke;
+  font-size: large;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #222d20;
+  height: 100vh;
+}

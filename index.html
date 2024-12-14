@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Module 3 | Pixi Pong | PixiJS</title>
+  </head>
+  <body>
+    <h1>- Pixi Pong -</h1>
+    <game id="game"></game>
+    <!-- Load in the PixiJS -->
+    <script src="https://pixijs.download/release/pixi.min.js"></script>
+    <!-- Our ES6 code goes here as a type="module" -->
+    <script type="module">
+      //new PixiJS application instance
+      const app = new PIXI.Application();
+      /* Calling an asyncronous method on our PixiJS application|  "init" > initializes our display*/
+      await app.init({
+        // defined width and height measured in pixels
+        backgroundColor: "black",
+        width: 800,
+        height: 800,
+      });
+      //Define HTMLElement in our DOM we want to show our game using a DOM helper
+      document.getElementById("game").appendChild(app.canvas);
+      /* 
+        1. create a new graphic instance: represents "cirlce" on the screen
+        2. Assign it  variable called "circle"
+        */
+      const circle = new PIXI.Graphics();
+      //Set "fill" color - orange
+      circle.beginFill("red");
+      /* Tell Pixi to draw an actual circle
+      > Three arguments: 
+        > X,
+        > Y 
+        > Radius size
+        > all measured in pixels. 
+        */
+      //    ADD BORDERS here ----https://pixijs.com/8.x/guides/components/graphics - use the pixiJS graphics
+      //   Top Border--
+      const topBorder = new PIXI.Graphics();
+      topBorder.beginFill("red");
+      topBorder.drawRect(); //inc.lude the 3 arguments
+      /* Tell Pixi to draw
+      > Three arguments: 
+        > X,
+        > Y 
+        > Radius size
+        > all measured in pixels. 
+        */
+
+      // Right Border---
+      // Bootom Border----
+      //Left Border -----
+
+      circle.drawCircle(8, 8, 8);
+      // Now we need to call an end to our "fill" that we started
+      // earlier with our "beginFill" call with the "endFill" call
+      circle.endFill();
+      /* Now we need to tell our circle where to "spawn" on our
+       game display by setting it's "view" x and y coordinates*/
+      circle.x = 450;
+      circle.y = 350;
+      // This will determine our circle's "velocity" and direction
+      let xv = 11;
+      let yv = 4;
+
+      // addChild call  --> ADDS circle to the game Stage Display
+      app.stage.addChild(circle);
+      // Add a refresh engine that powers our graphic's movement.
+      //use built-in "ticker" feature like so...
+      app.ticker.add(() => {
+        // All following code will be executed on every "frame" update/refresh
+
+        if (circle.x >= 800 || circle.x <= 0) {
+          // If our circle exceeds 800px or is less than zero
+          // This will flip a postitive number to a negative
+          // as well as a negative to a positive due to the
+          // "math of signs" property in mathematics which
+          // states two negatives equals a positive
+          xv = -xv;
+        }
+
+        // Rinse and repeat for our Y axis
+        if (circle.y >= 800 || circle.y <= 0) {
+          yv = -yv;
+        }
+        // Lets move our circle's by their direction/velocity
+        circle.x += xv;
+        circle.y += yv;
+      });
+    </script>
+  </body>
+</html>
