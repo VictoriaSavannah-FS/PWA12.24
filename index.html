@@ -24,55 +24,78 @@
       });
       //Define HTMLElement in our DOM we want to show our game using a DOM helper
       document.getElementById("game").appendChild(app.canvas);
-      /* 
-        1. create a new graphic instance: represents "cirlce" on the screen
-        2. Assign it  variable called "circle"
-        */
+      /**
+       * Create a new graphic isntance: Handle the Rectangualr BOrders
+       * Top | Bottom | Left | Right
+       * https://pixijs.com/8.x/examples/graphics/simple
+      //  *   // Rectangle + line style 2
+        graphics.rect(350, 50, 100, 100);
+        graphics.fill(0xc34288);
+        graphics.stroke({ width: 10, color: 0xffbd01 });
+       */
+      /*
+              1. create a new graphic instance: represents "cirlce" on the screen
+              2. Assign it  variable called "circle"
+              */
+      function rectangleBorder(x, y, width, height, color) {
+        const border = new PIXI.Graphics();
+        border.beginFill(color);
+        // params: x, y, width, height, color - pass arguments
+        border.drawRect(x, y, width, height);
+        border.endFill();
+        // add/append border to hmtl
+        app.stage.addChild(border);
+        return border;
+
+        // graphics.stroke({ width: 10, color: white });
+      }
+      // Creating the actual borders
+      /** X-axis
+       * Y-axis
+       * Width
+       * Height
+       * color*/
+      // Top Border - 800px-Wdth | 10px heiht
+      const top = rectangleBorder(0, 0, 800, 10, "red");
+      // Bottom Border:800pxwdth|10px|0X-axis|y-790
+      const bottom = rectangleBorder(0, 790, 800, 10, "goldenrod");
+      //Left Border: height: 790
+      const left = rectangleBorder(0, 0, 10, 790, "green");
+
+      // Right Borderconst: h:800 | 10w | x-s| y end
+      const right = rectangleBorder(790, 0, 10, 800, "blue");
+      // circle --------------------------
+
       const circle = new PIXI.Graphics();
       //Set "fill" color - orange
-      circle.beginFill("red");
+      circle.beginFill("whitesmoke");
       /* Tell Pixi to draw an actual circle
-      > Three arguments: 
-        > X,
-        > Y 
-        > Radius size
-        > all measured in pixels. 
-        */
-      //    ADD BORDERS here ----https://pixijs.com/8.x/guides/components/graphics - use the pixiJS graphics
-      //   Top Border--
-      const topBorder = new PIXI.Graphics();
-      topBorder.beginFill("red");
-      topBorder.drawRect(); //inc.lude the 3 arguments
-      /* Tell Pixi to draw
-      > Three arguments: 
-        > X,
-        > Y 
-        > Radius size
-        > all measured in pixels. 
-        */
-
-      // Right Border---
-      // Bootom Border----
-      //Left Border -----
+            > Three arguments| all measured in pixels.
+              > X,
+              > Y
+              > Radius size
+              */
 
       circle.drawCircle(8, 8, 8);
       // Now we need to call an end to our "fill" that we started
       // earlier with our "beginFill" call with the "endFill" call
       circle.endFill();
       /* Now we need to tell our circle where to "spawn" on our
-       game display by setting it's "view" x and y coordinates*/
+             game display by setting it's "view" x and y coordinates*/
       circle.x = 450;
       circle.y = 350;
       // This will determine our circle's "velocity" and direction
-      let xv = 11;
+      let xv = 3;
       let yv = 4;
 
       // addChild call  --> ADDS circle to the game Stage Display
       app.stage.addChild(circle);
       // Add a refresh engine that powers our graphic's movement.
       //use built-in "ticker" feature like so...
+      let borderHit = { top: false, bottom: false, left: false, right: false };
       app.ticker.add(() => {
         // All following code will be executed on every "frame" update/refresh
+        // ADD BORDER HITS!!
 
         if (circle.x >= 800 || circle.x <= 0) {
           // If our circle exceeds 800px or is less than zero
@@ -90,7 +113,15 @@
         // Lets move our circle's by their direction/velocity
         circle.x += xv;
         circle.y += yv;
+        // ADD the trigger handlers for Border hits
       });
+      /**
+       * Once the circle has bounced off all four borders, the Promise should resolve, and an alert should pop up to notify the user that the application has completed.
+       */
+
+      function allBordersHit() {
+        // Promise to handle border hits
+      }
     </script>
   </body>
 </html>
