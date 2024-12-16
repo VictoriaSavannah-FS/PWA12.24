@@ -25,17 +25,17 @@
       //Define HTMLElement in our DOM we want to show our game using a DOM helper
       document.getElementById("game").appendChild(app.canvas);
       /**
-                   * Create a new graphic isntance: Handle the Rectangualr BOrders
-                   * Top | Bottom | Left | Right
-                   * https://pixijs.com/8.x/examples/graphics/simple
-                  //  *   // Rectangle + line style 2
-                    graphics.rect(350, 50, 100, 100);
-                    graphics.fill(0xc34288);
-                    graphics.stroke({ width: 10, color: 0xffbd01 });
+       * Create a new graphic isntance: Handle the Rectangualr BOrders
+       * Top | Bottom | Left | Right
+       * https://pixijs.com/8.x/examples/graphics/simple
+      //  *   // Rectangle + line style 2
+         graphics.rect(350, 50, 100, 100);
+         graphics.fill(0xc34288);
+         graphics.stroke({ width: 10, color: 0xffbd01 });
                    */
       /*
-                          1. create a new graphic instance: represents "cirlce" on the screen
-                          2. Assign it  variable called "circle"
+        1. create a new graphic instance: represents "cirlce" on the screen
+        2. Assign it  variable called "circle"
                           */
       function rectangleBorder(x, y, width, height, color) {
         const border = new PIXI.Graphics();
@@ -70,11 +70,11 @@
       //Set "fill" color - orange
       circle.beginFill("whitesmoke");
       /* Tell Pixi to draw an actual circle
-                        > Three arguments| all measured in pixels.
-                          > X,
-                          > Y
-                          > Radius size
-                          */
+       > Three arguments| all measured in pixels.
+       > X,
+       > Y
+       > Radius size
+        */
 
       circle.drawCircle(0, 0, 8);
       // Now we need to call an end to our "fill" that we started
@@ -86,7 +86,7 @@
       circle.y = 350;
       // This will determine our circle's "velocity" and direction
       let xv = 1;
-      let yv = 3;
+      let yv = 5;
 
       // addChild call  --> ADDS circle to the game Stage Display
       app.stage.addChild(circle);
@@ -198,7 +198,6 @@
         app.ticker.stop();
         alert("Yay! All borders were HIt! Play Again!");
       });
-      // Promise to handle border hits
     </script>
   </body>
 </html>
