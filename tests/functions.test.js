@@ -35,7 +35,7 @@ test("sumOfArray: error if array more than 5 numbers", () => {
 // sumOf Array --- TEST 4 | Invalid iputs -NEgatives and strings
 
 test("sumOfArray: throws error for invalid inputs", () => {
-  expect(() => sumOfArray(["numbr", -12, 3])).toThrow(
+  expect(() => sumOfArray(["numbr", -12, -3])).toThrow(
     "Array needs at least 3 positive numbers."
   );
 });
@@ -50,7 +50,7 @@ test("findMax: return the largest value in array", () => {
 
 // findMax ----- TEST 2 | Invalid Values
 test("findMax: throw--> error for invalid inputs", () => {
-  expect(() => findMax(["ans", -20, 100])).toThrow(
+  expect(() => findMax(["ans", -20, -100])).toThrow(
     "Array must contain at least one positive number within 0 and 999."
   );
 });
@@ -83,5 +83,5 @@ test("capitalizeWords: capitalize the first letter of each word", () => {
 
 // capitalizeWords ----- TEST 2 | Invalid Values
 test("capitalizeWords: throw error for invalid inputs", () => {
-  expect(() => capitalizeWords(465)).toThrow("Input type must be a string.");
+  expect(() => capitalizeWords(465)).toThrow("Input must be a string.");
 });

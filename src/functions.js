@@ -194,9 +194,7 @@ function capitalizeWords(str) {
     // Join words back together to one string
     return capiWords.join(" ");
   } catch (error) {
-    console.error(
-      "Error: Inout Invalid. Please try again - inpuot needs to be strings. "
-    );
+    console.error("Error: Invalid Input. Input must  be a string. ");
     // return "Invalid Input: Needs to a Valid String";
     throw error; //for jest to handle
   }
