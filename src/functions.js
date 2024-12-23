@@ -58,7 +58,8 @@ function sumOfArray(arr) {
   } catch (error) {
     // handle errors
     console.error("Error:Invalid input type");
-    return "Invalid Input. Needs to be an array with positive number.";
+    // return "Invalid Input. Needs to be an array with positive number.";
+    throw error; //send to Jest to handle
   }
 }
 /**
@@ -104,7 +105,8 @@ function findMax(arr) {
     return Math.max(...filterArr);
   } catch (error) {
     console.error("Error: Invalid Input. Try again.");
-    return "Invalid input type. Array needs to contain positive numbers in range.";
+    // return "Invalid input type. Array needs to contain positive numbers in range.";
+    throw error; //for Jest
   }
 }
 
@@ -152,7 +154,8 @@ function reverseString(str) {
     return reverseStr;
   } catch (error) {
     console.error("Error:Invalid Input");
-    return "Invalid Input. Try again wiht a valid string.";
+    // return "Invalid Input. Try again wiht a valid string.";
+    throw error; //for jest
   }
 }
 
@@ -194,6 +197,15 @@ function capitalizeWords(str) {
     console.error(
       "Error: Inout Invalid. Please try again - inpuot needs to be strings. "
     );
-    return "Invalid Input: Needs to a Valid String";
+    // return "Invalid Input: Needs to a Valid String";
+    throw error; //for jest to handle
   }
 }
+
+// Exporting the modules
+module.exports = {
+  sumOfArray,
+  findMax,
+  reverseString,
+  capitalizeWords,
+};
