@@ -57,29 +57,31 @@ test("findMax: throw--> error for invalid inputs", () => {
 
 /** --------------- REVERSE STRINGS  -- TESTINGS */
 
-// findMax ----- TEST 1 | Valid Inputs
+// reverseString ----- TEST 1 | Valid Inputs
 
-test("findMax: return the largest value in array", () => {
-  expect(findMax([10, 20, 100])).toBe(100);
+test("reverseString: return the string in reverse", () => {
+  expect(reverseString("hello")).toBe("olleh");
 });
 
-// findMax ----- TEST 2 | Invalid Values
-test("findMax: throw--> error for invalid inputs", () => {
-  expect(() => findMax(["ans", -20, 100])).toThrow(
-    "Array must contain at least one positive number within 0 and 999."
+// reverseString ----- TEST 2 | string too long - max 15char/words
+test("reverseString: error when string is too long", () => {
+  expect(() => reverseString("exampleofbadstringmaybe")).toThrow(
+    "String cannot be more than 15 characters."
   );
+});
+// reverseString ----- TEST 3 | Invalid Input
+test("reverseString: throw error for invalid inputs", () => {
+  expect(() => reverseString(123)).toThrow("Input type must be a string.");
 });
 
 /** --------------- CAPITILIZE WORDS  -- TESTINGS */
-// findMax ----- TEST 1 | Valid Inputs
+// capitalizeWords ----- TEST 1 | Valid Inputs
 
-test("findMax: return the largest value in array", () => {
-  expect(findMax([10, 20, 100])).toBe(100);
+test("capitalizeWords: capitalize the first letter of each word", () => {
+  expect(capitalizeWords("hello amazing world")).toBe("Hello Amazing World");
 });
 
-// findMax ----- TEST 2 | Invalid Values
-test("findMax: throw--> error for invalid inputs", () => {
-  expect(() => findMax(["ans", -20, 100])).toThrow(
-    "Array must contain at least one positive number within 0 and 999."
-  );
+// capitalizeWords ----- TEST 2 | Invalid Values
+test("capitalizeWords: throw error for invalid inputs", () => {
+  expect(() => capitalizeWords(465)).toThrow("Input type must be a string.");
 });
